@@ -13,7 +13,7 @@ function getTitle(title) {
   return title;
 }
 
-
+*/
 
 const list = [
   {
