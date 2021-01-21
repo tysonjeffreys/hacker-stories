@@ -35,19 +35,25 @@ const list = [
 ];
 console.log(list);
 
-const App = () => (
+const App = () => {
+  const handleChange = event => {
+    console.log(event.target.value);
+  };
+  
+  
+  return (
     <div>
       <h1>'My Hacker Stories'</h1>
 
-    <Search />
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" onChange={handleChange} />
       
     <hr />
 
     <List />
-
-    <List />
     </div>
   );
+};
 
 
 const Search = () => (
