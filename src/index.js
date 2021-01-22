@@ -14,9 +14,31 @@ function tick() {
   );
 */
 
+function Welcome(props) {
+  return <h1>Welcome, {props.name}</h1>;
+}
+
+const names = {
+  first: 'Tyson'
+};
+
+
+function NameApp() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Hyperion" />
+      <Welcome name="Shrike" />
+    </div>
+  );
+};
+
+const element = <Welcome {...names} />;
+
 ReactDOM.render(
     <App />,
     //element,
+    //<NameApp />,
     document.getElementById('root')
 );
 //}
