@@ -23,6 +23,20 @@ function getAlphabet() {
 const [firstLetter, secondLetter] = getAlphabet();
 console.log('First letter: ' , firstLetter);
 
+function Example () {
+  const [count, setCount] = React.useState(0);
+
+  return (
+  <div>
+    <p>You clicked {count} times</p>
+    <button onClick={() => setCount(count + 1)}>
+    Click me
+    </button>
+  </div>
+  );
+}
+
+
 const List = props => 
   props.list.map(item => (
       <div key="item.objectID">
@@ -73,6 +87,8 @@ const App = () => {
     <hr />
 
     <List list={stories}/>
+
+    <Example />
     
     </div>
   );
