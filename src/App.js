@@ -15,7 +15,7 @@ function getTitle(title) {
 }
 
 */
-
+/*
 function getAlphabet() {
   return ['a', 'b'];
 }
@@ -35,8 +35,9 @@ function Example () {
   </div>
   );
 }
+*/
 
-
+/*
 const List = props => 
   props.list.map(item => (
       <div key="item.objectID">
@@ -44,7 +45,7 @@ const List = props =>
         <span>{item.title}</span>
       </div>
   ));
-  
+*/  
 
 const App = () => {
   
@@ -67,44 +68,63 @@ const App = () => {
     }
   ];
 
-  const [searchTerm, setSearchTerm] = React.useState('');
-  
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-    };
+  const handleSearch = event => {
+    console.log(event.target.value);
+  };
   
   return (
     <div>
       <h1>My Hacker Stories</h1>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleChange} />
 
-    <p>
-      Searching for <strong>{searchTerm}</strong>
-    </p>
-    
-    
-    <hr />
+      <Search onSearch={handleSearch} />
 
-    <List list={stories}/>
+  
 
-    <Example />
+      <hr />
+
+      <List list={stories}/>
     
     </div>
   );
 };
 
+const Search = props => {
+    
+  const [searchTerm, setSearchTerm] = React.useState('');
 
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+
+    props.onSearch(event);
+    };
+
+    return (
+      <div>
+        <label htmlFor="search">Search: </label>
+        <input id="search" type="text" onChange={handleChange} />
+  
+        <p>
+          Searching for <strong>{searchTerm}</strong>
+        </p>
+      </div>
+    );
+};
+
+
+
+/*
 const Search = () => (
     <div>
     <label htmlFor="search">Search: </label>
     <input id="search" type="text" />
     </div>
   );
+*/
 
-/*
-const List = () => 
-  list.map(item => (
+
+
+const List = props => 
+  props.list.map(item => (
     <div key={item.objectID}>
       <span>
         <a href={item.url}>{item.title}</a>
@@ -114,7 +134,7 @@ const List = () =>
       <span>{item.points}</span>
     </div>
   ));                                              
-*/
+
   
     
 
