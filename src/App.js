@@ -27,30 +27,34 @@ const App = () => {
       }
     ];
 
-    const [searchTerm, setSearchTerm] = React.useState("");
+    const [searchTerm, setSearchTerm] = React.useState('React');
 
     const handleSearch = event => {
       setSearchTerm(event.target.value);
-      console.log(searchTerm);
+      //console.log(searchTerm);
       
     }
+
+    const searchedStories = stories.filter(story => 
+       story.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   return (
     
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search onSearch={handleSearch}/>
+      <Search search={searchTerm} onSearch={handleSearch}/>
 
       <hr />
 
-      <List list={stories}/>
+      <List list={searchedStories}/>
     </div>
 );
 
 };
 
-const Search = props => {
+const Search = ({search, onSearch}) => (
   /*const handleChange = event => {
     //console.log(event.target.value)
     setSearchTerm(event.target.value);
@@ -58,14 +62,14 @@ const Search = props => {
     props.onSearch(event);
   }
 */
-  return (
+  
   <div>
     <label htmlFor="search">Search: </label>
-    <input id="search" type="text" onChange={props.onSearch} />
+    <input id="search" type="text" value={search} onChange={onSearch} />
   </div>
 
-  );
-};
+ );
+
 
 const List = props => {
 return (
@@ -82,5 +86,39 @@ return (
 
 );
 };
+
+
+//Practice for understanding filter
+const words = [
+  'spray',
+  'limit',
+  'elite',
+  'exuberant',
+  'desctruction',
+  'present'
+];
+
+const filteredWords = words.filter(function(word) {
+  return word.length >6;
+});
+
+console.log(filteredWords)
+
+//Practice for understanding nested object destructuring
+
+const user = {
+  firstName: 'Robin',
+  pet: {
+    name: 'Trixi',
+  },
+};
+
+const {firstName, pet: {name}} = user;
+
+console.log(firstName);
+
+
+
+
 
 export default App;
