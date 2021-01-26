@@ -27,12 +27,24 @@ const App = () => {
       }
     ];
 
-    const [searchTerm, setSearchTerm] = React.useState('React');
+    const useSemiPersistentState = (key, initialState) => {
+    
+    const [value, setValue] = React.useState(localStorage.getItem('key') || initialState);
 
+    React.useEffect(() => {
+      localStorage.setItem('key', value);
+      //console.log(searchTerm);
+    }, [value, key]);
+    
+    return [value, setValue];
+  }
+
+    const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
+    
     const handleSearch = event => {
       setSearchTerm(event.target.value);
       //console.log(searchTerm);
-      
+
     }
 
     const searchedStories = stories.filter(story => 
@@ -71,21 +83,24 @@ const Search = ({search, onSearch}) => (
  );
 
 
-const List = props => {
-return (
-  props.list.map(function(item) {
-    return (
-      <div key={item.objectID}>
-        <span>{item.author} - </span>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-      </div>
-    );
-  })
+const List = ({ list }) => 
+  list.map(item => <Item key={item.objectID} {...item} />);
 
-);
-};
+
+const Item = ({ title, url, author, num_comments, points }) => (
+  <div>
+    <span>
+      <a href={url}>{title}</a>
+    </span>
+    <span> - {author}</span>
+    <span> - {num_comments}</span>
+    <span> - {points}</span>
+  </div>
+)
+    
+
+
+
 
 
 //Practice for understanding filter
@@ -117,7 +132,14 @@ const {firstName, pet: {name}} = user;
 
 console.log(firstName);
 
+/*
+//Practice for understanding rest
 
+const storie = stories[0];
+console.log(storie);
+const { objectID, ...item } = storie;
+console.log(item);
+*/
 
 
 
