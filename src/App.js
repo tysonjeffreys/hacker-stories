@@ -61,8 +61,10 @@ const App = () => {
       label="Search"
       value={searchTerm}
       onInputChange={handleSearch}
-      />
-            
+      >
+        <strong>Search: </strong>
+      </InputWithLabel>
+
       {/*<Search search={searchTerm} onSearch={handleSearch}/> */}
 
       <hr />
@@ -78,10 +80,11 @@ const InputWithLabel = ({
   label,
   value,
   type = 'text',
-  onInputChange 
+  onInputChange,
+  children,
 }) => (
   <>
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>{children}</label>
     &nbsp;
     <input
     id={id}
@@ -92,7 +95,7 @@ const InputWithLabel = ({
     </>
 );
 
-{/*
+/*
 const Search = ({search, onSearch}) => (
    
   <>
@@ -101,7 +104,7 @@ const Search = ({search, onSearch}) => (
   </>
 
  );
-*/}
+*/
 
 const List = ({ list }) => 
   list.map(item => <Item key={item.objectID} {...item} />);
