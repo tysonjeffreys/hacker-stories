@@ -1,4 +1,4 @@
-//This is a practice file of the original App.js file. I am re-creating it to test my understanding
+//This is a practice file of the original App.js file. I am re-creating it from scratch to test my understanding
 //of the concepts contained in the original file.
 
 
@@ -56,7 +56,14 @@ const App = () => {
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search search={searchTerm} onSearch={handleSearch}/>
+      <InputWithLabel
+      id="search"
+      label="Search"
+      value={searchTerm}
+      onInputChange={handleSearch}
+      />
+            
+      {/*<Search search={searchTerm} onSearch={handleSearch}/> */}
 
       <hr />
 
@@ -66,22 +73,35 @@ const App = () => {
 
 };
 
-const Search = ({search, onSearch}) => (
-  /*const handleChange = event => {
-    //console.log(event.target.value)
-    setSearchTerm(event.target.value);
+const InputWithLabel = ({ 
+  id,
+  label,
+  value,
+  type = 'text',
+  onInputChange 
+}) => (
+  <>
+    <label htmlFor={id}>{label}</label>
+    &nbsp;
+    <input
+    id={id}
+    type="text"
+    value={value}
+    onChange={onInputChange}
+    />
+    </>
+);
 
-    props.onSearch(event);
-  }
-*/
-  
+{/*
+const Search = ({search, onSearch}) => (
+   
   <>
     <label htmlFor="search">Search: </label>
     <input id="search" type="text" value={search} onChange={onSearch} />
   </>
 
  );
-
+*/}
 
 const List = ({ list }) => 
   list.map(item => <Item key={item.objectID} {...item} />);
